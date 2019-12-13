@@ -6,30 +6,36 @@
 #
 
 library(shiny)
+library('plotly')
 
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Drunken Beer Buyer"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
+      sliderInput("abv",
+                  "Input ABV %:",
+                  min = 0,
+                  max = 20,
+                  step = 0.1,
+                  value = 5.6),
       
-      numericInput('waiting', 
-                   'Waiting:',
-                   value = 70)
+      sliderInput("ibu",
+                  "Input IBU:",
+                  min = 0,
+                  max = 100,
+                  step = 1,
+                  value = 35)
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("distPlot"),
-      plotOutput("scatterPlot")
+      plotOutput("beerPlot"),
+      tableOutput("beerTable")
+      # plotOutput("scatterPlot")
     )
   )
 ))
